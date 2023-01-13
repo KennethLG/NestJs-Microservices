@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class TodoService {
-  getTodo() {
+  getTodos() {
     return ['todos list'];
+  }
+
+  getTodoById(id: string) {
+    return `todo ${id}`;
   }
 }
