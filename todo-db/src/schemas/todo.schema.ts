@@ -5,11 +5,11 @@ export type TodoDocument = HydratedDocument<Todo>;
 
 @Schema()
 export class Todo {
-  @Prop()
+  @Prop({ required: true })
   title: string;
 
-  @Prop()
-  description: number;
+  @Prop({ required: true })
+  description: string;
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo);
