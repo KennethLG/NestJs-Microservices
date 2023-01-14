@@ -12,7 +12,7 @@ export class TodoService {
   ) {}
 
   async getTodos() {
-    const endpoint = this.configService.endpoints.db.getTodos;
+    const endpoint = this.configService.endpoints.db.getAll;
     const response = await lastValueFrom(this.httpService.get(endpoint));
     return response.data;
   }

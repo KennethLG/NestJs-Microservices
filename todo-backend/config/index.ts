@@ -4,7 +4,8 @@ export default registerAs('AppConfig', () => ({
   port: parseInt(process.env.PORT, 10) || 3000,
   endpoints: {
     db: {
-      getTodos: process.env.ENDPOINT_DB_GET_TODOS,
+      getAll: process.env.ENDPOINT_TODODB_GET,
+      create: process.env.ENDPOINT_TODODB_CREATE,
     },
   },
 }));
