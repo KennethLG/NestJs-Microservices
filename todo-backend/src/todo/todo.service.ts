@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import config from 'config';
 import { lastValueFrom } from 'rxjs';
+import Todo from 'src/schemas/todo.schema';
 
 @Injectable()
 export class TodoService {
@@ -11,7 +12,13 @@ export class TodoService {
     @Inject(config.KEY) private configService: ConfigType<typeof config>,
   ) {}
 
-  async getTodos() {
+  async create(todo: Todo) {
+    const endpoint = this.configService.endpoints.db.create;
+    const response = await lastValueFrom(this.httpService.post(endpoint, todo));
+    return response.data;
+  }
+
+  async getAll() {
     const endpoint = this.configService.endpoints.db.getAll;
     const response = await lastValueFrom(this.httpService.get(endpoint));
     return response.data;
