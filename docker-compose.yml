@@ -1,0 +1,39 @@
+version: '3'
+services:
+  todo-backend:
+    build:
+      context: ./todo-backend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./todo-backend:/app
+      - /app/node_modules
+    command: npm run start:dev
+    depends_on:
+      - todo-db
+    environment:
+      DATABASE_URL: ${ENDPOINT_TODODB_GET}
+      ENDPOINT_TODODB_CREATE: ${ENDPOINT_TODODB_CREATE}
+
+  todo-db:
+    build:
+      context: ./todo-db
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    volumes:
+      - ./todo-db:/app
+      - /app/node_modules
+    command: npm run start:dev
+    depends_on:
+      - mongo-db
+    environment:
+      DATABASE_URL: mongodb://mongo-db:27017/
+
+  mongo-db:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data/db:/data/db
