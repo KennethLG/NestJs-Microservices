@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { TodoModule } from './todo/todo.module';
+import { TodoModule } from './components/todo/todo.module';
 import { ConfigModule } from '@nestjs/config';
-import { ExampleModule } from './example/example.module';
+import { ExampleModule } from './components/example/example.module';
 import config from 'config';
 
 @Module({
