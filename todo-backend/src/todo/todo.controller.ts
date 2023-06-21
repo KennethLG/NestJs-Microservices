@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, Param, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import Todo from 'src/schemas/todo.schema';
 import { TodoService } from './todo.service';
 
@@ -12,12 +12,16 @@ export class TodoController {
   }
 
   @Post('/')
+  @UsePipes(new ValidationPipe())
   create(@Body() todo: Todo) {
     return this.todoService.create(todo);
   }
 
   @Get('/:id')
   getTodoById(@Param('id') id: string) {
+    if (!id) {
+      throw new HttpException('Please provide an id', 400)
+    }
     return this.todoService.getTodoById(id);
   }
 }
