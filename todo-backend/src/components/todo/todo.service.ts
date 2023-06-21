@@ -1,9 +1,10 @@
 import { HttpService } from '@nestjs/axios';
-import { HttpException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import config from 'config';
 import { lastValueFrom } from 'rxjs';
 import Todo from 'src/schemas/todo.schema';
+import { CustomHttpException } from 'src/util/customError';
 
 @Injectable()
 export class TodoService {
@@ -18,7 +19,7 @@ export class TodoService {
       const response = await lastValueFrom(this.httpService.post(endpoint, todo));
       return response.data;
     } catch (error) {
-      throw new HttpException(error.response.data, error.response.status);
+      throw new CustomHttpException(error.response.data, error.response.status);
     }
   }
 
@@ -28,7 +29,7 @@ export class TodoService {
       const response = await lastValueFrom(this.httpService.get(endpoint));
       return response.data;
     } catch (error) {
-      throw new HttpException(error.response.data, error.response.status);
+      throw new CustomHttpException(error.response.data, error.response.status);
     }
   }
 
