@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TodoModule } from './todo/todo.module';
 import { ConfigModule } from '@nestjs/config';
+import { ExampleModule } from './example/example.module';
 import config from 'config';
 
 @Module({
@@ -10,6 +11,7 @@ import config from 'config';
       isGlobal: true,
     }),
     TodoModule,
+    ExampleModule,
   ],
   controllers: [],
   providers: [],
