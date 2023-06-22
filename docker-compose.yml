@@ -28,4 +28,6 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./data/db:/data/db
+      - mongodb_data_container:/data/db
+volumes:
+  mongodb_data_container:
