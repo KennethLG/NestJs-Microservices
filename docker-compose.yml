@@ -9,9 +9,6 @@ services:
       - 3000:3000
     depends_on:
       - todo-db
-    environment:
-      ENDPOINT_TODODB_GET: ${ENDPOINT_TODODB_GET}
-      ENDPOINT_TODODB_CREATE: ${ENDPOINT_TODODB_CREATE}
 
   todo-db:
     build:
@@ -22,8 +19,6 @@ services:
       - 3001:3001
     depends_on:
       - mongo-db
-    environment:
-      DATABASE_URL: mongodb://mongo-db:27017/
 
   mongo-db:
     image: mongo

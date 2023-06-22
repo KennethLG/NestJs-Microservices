@@ -9,12 +9,13 @@ import config from 'config';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('DATABASE_URL'),
+        uri: configService.get<string>('AppConfig.db.url'),
       }),
       inject: [ConfigService]
     }),
     ConfigModule.forRoot({
       load: [config],
+      isGlobal: true
     }),
     TodoModule,
   ],
