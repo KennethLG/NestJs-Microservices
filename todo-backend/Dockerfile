@@ -2,7 +2,7 @@
 FROM node:16 AS builder
 WORKDIR /app
 COPY package*.json .npmrc ./
-RUN npm install --loglevel verbose
+RUN npm ci
 COPY . .
 RUN npm run build
 
