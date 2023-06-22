@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException } from '@nestjs/common';
 import { ExampleService } from './example.service';
 import { take } from 'rxjs';
 
@@ -15,5 +15,10 @@ export class ExampleController {
     const takeFourNumbers = numbers.pipe(take(4));
 
     takeFourNumbers.subscribe((x) => console.log('Next: ', x));
+  }
+
+  @Get('/error')
+  getError() {
+    throw new HttpException('intentional error', 500);
   }
 }
