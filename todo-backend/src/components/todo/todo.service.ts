@@ -17,19 +17,24 @@ export class TodoService {
     const endpoint = this.configService.endpoints.db.create;
     try {
       const response = await lastValueFrom(this.httpService.post(endpoint, todo));
+      console.log(response);
       return response.data;
     } catch (error) {
-      throw new CustomHttpException(error.response.data, error.response.status);
+      console.error(error);
+      // throw new CustomHttpException(error.response.data, error.response.status);
     }
   }
 
   async getAll() {
     const endpoint = this.configService.endpoints.db.getAll;
+    console.log(endpoint)
     try {
       const response = await lastValueFrom(this.httpService.get(endpoint));
+      console.log(response)
       return response.data;
     } catch (error) {
-      throw new CustomHttpException(error.response.data, error.response.status);
+      console.error(error);
+      // throw new CustomHttpException(error.response.data, error.response.status);
     }
   }
 

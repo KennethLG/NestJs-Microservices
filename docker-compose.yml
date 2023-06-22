@@ -4,18 +4,20 @@ services:
     build:
       context: ./todo-backend
       dockerfile: Dockerfile
+    env_file: ./todo-backend/.env
     ports:
       - 3000:3000
     depends_on:
       - todo-db
     environment:
-      DATABASE_URL: ${ENDPOINT_TODODB_GET}
+      ENDPOINT_TODODB_GET: ${ENDPOINT_TODODB_GET}
       ENDPOINT_TODODB_CREATE: ${ENDPOINT_TODODB_CREATE}
 
   todo-db:
     build:
       context: ./todo-db
       dockerfile: Dockerfile
+    env_file: ./todo-db/.env
     ports:
       - 3001:3001
     depends_on:
