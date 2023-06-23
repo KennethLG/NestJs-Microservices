@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TodoModule } from './components/todo/todo.module';
 import { ConfigModule } from '@nestjs/config';
 import { ExampleModule } from './components/example/example.module';
+import { AuthModule } from './auth/auth.module';
 import config from 'config';
 
 @Module({
@@ -12,6 +13,7 @@ import config from 'config';
     }),
     TodoModule,
     ExampleModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
