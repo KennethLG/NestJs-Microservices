@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TodoModule } from './todo/todo.module';
+import { UserModule } from './user/user.module';
 import config from 'config';
 
 @Module({
@@ -18,6 +19,7 @@ import config from 'config';
       isGlobal: true
     }),
     TodoModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],
