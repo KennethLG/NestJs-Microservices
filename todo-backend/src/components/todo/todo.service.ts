@@ -14,13 +14,13 @@ export class TodoService {
   ) {}
 
   async create(todo: Todo) {
-    const endpoint = this.configService.endpoints.db.create;
+    const endpoint = this.configService.endpoints.todo.create;
     const response = await lastValueFrom(this.httpService.post(endpoint, todo));
     return response.data;
   }
 
   async getAll() {
-    const endpoint = this.configService.endpoints.db.getAll;
+    const endpoint = this.configService.endpoints.todo.getAll;
     const response = await lastValueFrom(this.httpService.get(endpoint));
     return response.data;
   }
